@@ -1,0 +1,56 @@
+### GET all brands
+GET http://localhost:8084/api/brands
+
+### GET brand by name
+GET http://localhost:8084/api/brands/Pepsi
+
+### GET a drink by name
+GET http://localhost:8084/api/drinks/Fanta_orange
+
+### GET all drinks
+GET http://localhost:8084/api/drinks
+
+### POST (create) a new brand
+POST http://localhost:8084/api/brands
+Content-Type: application/json
+
+{
+  "name": "New Brand",
+  "country": "New Country"
+}
+
+### PUT (update) a brand by name
+PUT http://localhost:8084/api/brands/Fanta
+Content-Type: application/json
+
+{
+  "name": "Updated Brand",
+  "country": "Updated Country"
+}
+
+### POST (create) a new drink
+POST http://localhost:8084/api/drinks
+Content-Type: application/json
+
+{
+  "name": "New Drink",
+  "price": 10,
+  "year": "2023",
+  "brandId": "db3af212-e241-49e1-9384-cc56af135d17"
+}
+
+### PUT (update) a drink by name
+PUT http://localhost:8084/api/drinks/Fanta_orange
+Content-Type: application/json
+
+{
+  "name": "Fonta",
+  "price": 12,
+  "year": "2021"
+}
+
+### DELETE a brand by name
+DELETE http://localhost:8084/api/brands/Pepsi
+
+### DELETE a drink by name
+DELETE http://localhost:8084/api/drinks/Fanta
