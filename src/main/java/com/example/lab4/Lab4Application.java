@@ -29,7 +29,8 @@ public class Lab4Application {
 						.and()
 						.path(
 								"/api/brands",
-								"/api/brands/{uuid}"
+								"/api/brands/**",
+								"/api/brands/name/{name}"
 						)
 						.uri(brandUrl)
 				)
@@ -38,7 +39,8 @@ public class Lab4Application {
 						.and()
 						.path(
 								"/api/drinks",
-								"/api/drinks/**"
+								"/api/drinks/**",
+								"/api/drinks/name/{name}"
 						)
 						.uri(drinkUrl)
 				)

@@ -2,10 +2,10 @@
 GET http://localhost:8084/api/brands
 
 ### GET brand by name
-GET http://localhost:8084/api/brands/Pepsi
+GET http://localhost:8084/api/brands/name/Pepsi
 
 ### GET a drink by name
-GET http://localhost:8084/api/drinks/Fanta_orange
+GET http://localhost:8084/api/drinks/name/Fanta_orange
 
 ### GET all drinks
 GET http://localhost:8084/api/drinks
@@ -20,7 +20,7 @@ Content-Type: application/json
 }
 
 ### PUT (update) a brand by name
-PUT http://localhost:8084/api/brands/Fanta
+PUT http://localhost:8084/api/brands/name/Fanta
 Content-Type: application/json
 
 {
@@ -40,7 +40,7 @@ Content-Type: application/json
 }
 
 ### PUT (update) a drink by name
-PUT http://localhost:8084/api/drinks/Fanta_orange
+PUT http://localhost:8084/api/drinks/name/Fanta_orange
 Content-Type: application/json
 
 {
@@ -50,7 +50,13 @@ Content-Type: application/json
 }
 
 ### DELETE a brand by name
-DELETE http://localhost:8084/api/brands/Pepsi
+DELETE http://localhost:8084/api/brands/name/Pepsi
 
 ### DELETE a drink by name
-DELETE http://localhost:8084/api/drinks/Fanta
+DELETE http://localhost:8084/api/drinks/name/Fanta
+
+### DELETE a brand by id
+DELETE http://localhost:8084/api/brands/799c760c-d86b-425a-a38f-458348d3e388
+
+### DELETE a drink by id
+DELETE http://localhost:8084/api/drinks/
