@@ -6,6 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.gateway.route.RouteLocator;
 import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.reactive.CorsWebFilter;
+import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @SpringBootApplication
 public class Lab4Application {
@@ -18,9 +24,9 @@ public class Lab4Application {
 	@Bean
 	public RouteLocator routeLocator(
 			RouteLocatorBuilder builder,
-			@Value("http://localhost:8081") String drinkUrl,
-			@Value("http://localhost:8082") String brandUrl,
-			@Value("localhost:8084") String host
+			@Value("${lab.drink.url}") String drinkUrl,
+			@Value("${lab.brand.url}") String brandUrl,
+			@Value("${lab.gateway.host}") String host
 	){
 		return builder
 				.routes()
@@ -30,7 +36,7 @@ public class Lab4Application {
 						.path(
 								"/api/brands",
 								"/api/brands/**",
-								"/api/brands/name/{name}"
+								"/api/brands/{uuid}"
 						)
 						.uri(brandUrl)
 				)
@@ -40,10 +46,26 @@ public class Lab4Application {
 						.path(
 								"/api/drinks",
 								"/api/drinks/**",
-								"/api/drinks/name/{name}"
+								"/api/drinks/{uuid}",
+								"/api/brands/{uuid}/drinks"
 						)
 						.uri(drinkUrl)
 				)
 				.build();
+	}
+
+	@Bean
+	public CorsWebFilter corsWebFilter() {
+
+		final CorsConfiguration corsConfig = new CorsConfiguration();
+		corsConfig.setAllowedOrigins(Collections.singletonList("*"));
+		corsConfig.setMaxAge(3600L);
+		corsConfig.setAllowedMethods(Arrays.asList("GET", "POST", "DELETE", "PUT","PATCH"));
+		corsConfig.addAllowedHeader("*");
+
+		final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", corsConfig);
+
+		return new CorsWebFilter(source);
 	}
 }
